@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./indexx.css">
+    <title>CLOSURE</title>
+</head>
+<body>
+    <h1 class="head">CLOSURE PROBLEM STATEMENT</h1>
+
+    <h2><pre>Q1 : "    function counter(){
+        var counter = 0;
+    
+        function IncreaseCounter() {
+            return counter += 1;
+        };
+    
+        return IncreaseCounter;
+    }
+    
+    var counter = counter();
+    alert(counter());
+    alert(counter());
+    alert(counter());
+    alert(counter());"</pre></h2>
+
+    <p><pre> Ans : The output will be :
+        1
+        2
+        3
+        4
+        because => The code creates a closure with a counter and a function to increment it, demonstrating the concept of closures in JavaScript. 
+                   Subsequent invocations of the inner function increment and display the counter's value.
+    </pre></p>
+<hr>
+    <h2>Q2 :<pre>
+         "let count = 0;
+        (function () {
+          if (count === 0) {
+            let count = 1;
+            console.log(count); // What is logged?
+          }
+          console.log(count); // What is logged?
+        })();"
+    </pre></h2>
+    <p> Ans : The inner count variable within the IIFE has local scope, and it shadows the outer count variable only within the IIFE's scope. Once the IIFE finishes executing, the inner count variable goes out of scope, and the outer count variable retains its value.</p>
+    <hr>    <h2>Q3:<pre>
+         "for (var i = 0; i < 3; i++) {
+            setTimeout(function log() {
+              console.log(i); // What is logged?
+            }, 1000);
+          }"
+    </pre></h2>
+
+    <p>Ans: In the provided code, a loop runs three times. Inside the loop, a setTimeout function is called with a callback function that logs the value of i. However, due to the asynchronous nature of setTimeout, by the time the callback functions are executed after the delay, the loop has already completed, and the value of i is 3.
+
+        Therefore, when the callbacks execute after 1 second each, they all log the current value of i, which is 3 at the end of the loop's execution.</p>
+
+        <hr>
+        <h2>Q4 : Write a code to calculate area of a rectangle using inner function. In this case outer function should accept parameter length and inner function should accept parameter breadth.</h2>
+
+      <p><pre>Ans : 
+        function calculateRectangleArea(length) {
+          function innerFunction(breadth) {
+              return length * breadth;
+          }
+      
+          return innerFunction;
+      }
+      
+      const length = 5; // You can change this value to whatever length you want
+      const calculateArea = calculateRectangleArea(length);
+      
+      const breadth = 10; // You can change this value to whatever breadth you want
+      const area = calculateArea(breadth);
+      
+      console.log(`The area of the rectangle is: ${area}`);
+      
+      </pre></p>
+      <hr>
+      <h2>Q5 :Take a variable in outer function and create an inner function to increase the counter every time it is called </h2>
+      <p><pre>
+        Ans : 
+        function createCounter() {
+          let counter = 0;
+      
+          function increaseCounter() {
+              counter++;
+              console.log(`Counter increased to: ${counter}`);
+          }
+      
+          return increaseCounter;
+      }
+      
+      const counterFunc = createCounter();
+      
+      counterFunc(); // This will increase the counter to 1
+      counterFunc(); // This will increase the counter to 2
+      counterFunc(); // This will increase the counter to 3
+      
+      </pre></p>
+      <hr>
+      <h2>Q6 : <pre>
+        "Print Output
+
+var a = 12;
+(function () {
+  alert(a);
+})();"</h2>
+      <p></pre>Ans: The IIFE creates a function scope, allowing it to access the variable a from the outer scope. When the IIFE is invoked, it executes the alert(a) statement, which displays the value of a using the alert function. The value of a is 12, and it's accessible within the IIFE due to closures. <p></pre>
+        <hr>
+        <h2>Q7 :  <pre>"var a = 10;
+        var x = (function () {
+          var a = 12;
+          return function () {
+            alert(a);
+          };
+        })();
+        x();"</pre></h2>
+        <p>Ans : var a = 10; declares a variable a in the global scope and assigns it the value 10. 
+          var x = (function () { var a = 12; return function () { alert(a); }; })(); declares a variable x in the global scope and assigns
+          The key concept here is that the inner function defined within the IIFE has access to the a variable from its containing scope due to closures, allowing it to display the value 12 even though there's another variable a declared in the global scope.
+        </p>
+        <hr>
+        <h2>Q 8 :<pre>
+          "var globalVar = ""xyz"";
+  
+  (function outerFunc(outerArg) {
+      var outerVar = 'a';
+      
+      (function innerFunc(innerArg) {
+      var innerVar = 'b';
+      
+      console.log(
+          ""outerArg = "" + outerArg + ""\n"" +
+          ""innerArg = "" + innerArg + ""\n"" +
+          ""outerVar = "" + outerVar + ""\n"" +
+          ""innerVar = "" + innerVar + ""\n"" +
+          ""globalVar = "" + globalVar);
+      
+      })(456);
+  })(123);"
+        </pre> </h2>
+        <p><pre> Ans : 
+          var globalVar = "xyz"; declares a variable globalVar in the global scope and assigns it the value "xyz".
+  
+  (function outerFunc(outerArg) { ... })(123); defines an outer function called outerFunc that takes an argument outerArg. It's immediately invoked with the argument 123.
+  
+  Inside outerFunc, a variable outerVar is declared with the value 'a'.
+  
+  (function innerFunc(innerArg) { ... })(456); defines an inner function called innerFunc that takes an argument innerArg. It's immediately invoked with the argument 456.
+  
+  Inside innerFunc, a variable innerVar is declared with the value 'b'.
+  
+  The console.log(...) statement logs the values of outerArg, innerArg, outerVar, innerVar, and globalVar.
+        </pre></p>
+  
+      </body>
+      
+</html>

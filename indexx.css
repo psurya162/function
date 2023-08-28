@@ -1,0 +1,13 @@
+body{
+    background-color: aqua;
+    margin: 0;padding: 0;box-sizing: border-box;
+}
+.head{
+    text-align: center;
+    text-decoration: underline;
+    background-image: radial-gradient(green ,yellow,red);
+    
+}
+p{
+    border: 2px solid red;
+}
